@@ -2,7 +2,7 @@
 
 ![SQL](https://img.shields.io/badge/SQL-MySQL%208.0%2B-4479A1?logo=mysql&logoColor=white) ![License](https://img.shields.io/badge/license-BlackCat%20Proprietary-red) ![Status](https://img.shields.io/badge/status-stable-informational) ![Generated](https://img.shields.io/badge/generated-from%20schema--map-blue)
 
-> Schema package for table **books** (repo: $slug).
+> Schema package for table **books** (repo: `books`).
 
 ## Files
 ```
@@ -66,27 +66,27 @@ mysql -h 127.0.0.1 -P 3307 -u root -proot app < schema/030_foreign_keys.sql
 ```mermaid
 erDiagram
   BOOKS {
-    BIGINT id PK
-    VARCHAR(255) title
-    VARCHAR(255) slug
-    VARCHAR(512) short_description
-    LONGTEXT full_description
-    DECIMAL(12,2) price
-    CHAR(3) currency
-    BIGINT author_id
-    BIGINT main_category_id
-    VARCHAR(32) isbn
-    CHAR(5) language
+    INT id PK
+    VARCHAR title
+    VARCHAR slug
+    VARCHAR short_description
+    VARCHAR full_description
+    DECIMAL price
+    VARCHAR currency
+    INT author_id
+    INT main_category_id
+    VARCHAR isbn
+    VARCHAR language
     INT pages
-    VARCHAR(255) publisher
-    DATE published_at
-    VARCHAR(64) sku
+    VARCHAR publisher
+    DATETIME published_at
+    VARCHAR sku
     BOOLEAN is_active
     BOOLEAN is_available
     INT stock_quantity
-    DATETIME(6) created_at
-    DATETIME(6) updated_at
-    DATETIME(6) deleted_at
+    DATETIME created_at
+    DATETIME updated_at
+    DATETIME deleted_at
   }
   BOOKS }o--|| AUTHORS : "author_id"
   BOOKS }o--|| CATEGORIES : "main_category_id"
