@@ -88,8 +88,8 @@ erDiagram
     DATETIME(6) updated_at
     DATETIME(6) deleted_at
   }
-  BOOKS }o--|| AUTHORS : (author_id)
-  BOOKS }o--|| CATEGORIES : (main_category_id)
+  BOOKS }o--|| AUTHORS : "author_id"
+  BOOKS }o--|| CATEGORIES : "main_category_id"
 ```
 
 ## Indexes
