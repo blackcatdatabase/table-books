@@ -1,4 +1,4 @@
--- Auto-generated from schema-map.psd1 on 2025-10-21T02:32:05
+-- Auto-generated from schema-map.psd1 @ 1e83bb6 (2025-10-21T10:18:36+02:00)
 -- table: books
 ALTER TABLE books ADD CONSTRAINT fk_books_author FOREIGN KEY (author_id) REFERENCES authors(id) ON DELETE RESTRICT;
 
