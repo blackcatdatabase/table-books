@@ -12,7 +12,7 @@ Books catalog with pricing and stock flags.
 | short_description | VARCHAR(512) | YES | — | Short blurb. |  |
 | full_description | LONGTEXT | YES | — | Long description (rich text allowed). |  |
 | price | DECIMAL(12,2) | NO | 0.00 | Current unit price. |  |
-| currency | CHAR(3) | NO | ''EUR'' | ISO 4217 currency code (3 letters). |  |
+| currency | CHAR(3) | NO | 'EUR' | ISO 4217 currency code (3 letters). |  |
 | author_id | BIGINT UNSIGNED | NO | — | Author (FK authors.id). |  |
 | main_category_id | BIGINT UNSIGNED | NO | — | Primary category (FK categories.id). |  |
 | isbn | VARCHAR(32) | YES | — | ISBN identifier. |  |

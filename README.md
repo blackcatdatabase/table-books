@@ -45,7 +45,7 @@ mysql -h 127.0.0.1 -P 3307 -u root -proot app < schema/030_foreign_keys.sql
 | short_description | VARCHAR(512) | YES | — |  |
 | full_description | LONGTEXT | YES | — |  |
 | price | DECIMAL(12,2) | NO | 0.00 |  |
-| currency | CHAR(3) | NO | '' |  |
+| currency | CHAR(3) | NO | 'EUR' |  |
 | author_id | BIGINT UNSIGNED | NO | — |  |
 | main_category_id | BIGINT UNSIGNED | NO | — |  |
 | isbn | VARCHAR(32) | YES | — |  |
