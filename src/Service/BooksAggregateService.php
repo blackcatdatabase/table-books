@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace BlackCat\Database\Packages\Books\Service;
 
-use BlackCat\Core\Database\Database;
+use BlackCat\Core\Database;
 use BlackCat\Database\Packages\Books\Dto\BookDto;
 use BlackCat\Database\Packages\Books\Mapper\BookDtoMapper;
 use BlackCat\Database\Packages\Books\Repository\BookRepository;
