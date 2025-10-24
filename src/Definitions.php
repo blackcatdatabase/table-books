@@ -6,7 +6,7 @@ namespace BlackCat\Database\Packages\Books;
 final class Definitions {
     // --- základní metadata ---
     public static function table(): string { return 'books'; }
-    public static function contractView(): string { return 'v_books_contract'; }
+    public static function contractView(): string { return 'vw_books'; }
     /** @return string[] */
     public static function columns(): array { return [ 'id', 'title', 'slug', 'short_description', 'full_description', 'price', 'currency', 'author_id', 'main_category_id', 'isbn', 'language', 'pages', 'publisher', 'published_at', 'sku', 'is_active', 'is_available', 'stock_quantity', 'created_at', 'updated_at', 'deleted_at' ]; }
     public static function pk(): string { return 'id'; }
