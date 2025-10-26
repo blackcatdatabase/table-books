@@ -1,8 +1,9 @@
--- Auto-generated from schema-views-mysql.psd1 (map@mtime:2025-10-24T09:19:46Z)
+-- Auto-generated from schema-views-mysql.psd1 (map@38d5403)
 -- engine: mysql
 -- table:  books
 -- Contract view for [books]
-CREATE OR REPLACE VIEW vw_books AS
+-- Adds saleability helper.
+CREATE OR REPLACE SQL SECURITY INVOKER VIEW vw_books AS
 SELECT
   id,
   title,
@@ -22,6 +23,7 @@ SELECT
   is_active,
   is_available,
   stock_quantity,
+  (is_active = 1 AND is_available = 1 AND (stock_quantity IS NULL OR stock_quantity > 0)) AS is_saleable,
   created_at,
   updated_at,
   deleted_at

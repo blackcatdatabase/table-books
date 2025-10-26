@@ -1,7 +1,8 @@
--- Auto-generated from schema-views-postgres.psd1 (map@mtime:2025-10-24T09:45:40Z)
+-- Auto-generated from schema-views-postgres.psd1 (map@38d5403)
 -- engine: postgres
 -- table:  books
 -- Contract view for [books]
+-- Adds saleability helper.
 CREATE OR REPLACE VIEW vw_books AS
 SELECT
   id,
@@ -22,6 +23,7 @@ SELECT
   is_active,
   is_available,
   stock_quantity,
+  (is_active AND is_available AND (stock_quantity IS NULL OR stock_quantity > 0)) AS is_saleable,
   created_at,
   updated_at,
   deleted_at

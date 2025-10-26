@@ -1,4 +1,4 @@
--- Auto-generated from schema-map-mysql.psd1 (map@mtime:2025-10-24T09:13:35Z)
+-- Auto-generated from schema-map-mysql.psd1 (map@38d5403)
 -- engine: mysql
 -- table:  books
 CREATE TABLE IF NOT EXISTS books (
@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS books (
   stock_quantity INT UNSIGNED NOT NULL DEFAULT 0,
   created_at DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
   updated_at DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  version INT UNSIGNED NOT NULL DEFAULT 0,
   deleted_at DATETIME(6) NULL,
   INDEX idx_books_author_id (author_id),
   INDEX idx_books_main_category_id (main_category_id),
