@@ -1,4 +1,4 @@
--- Auto-generated from schema-map-postgres.psd1 (map@c5e4097)
+-- Auto-generated from schema-map-postgres.psd1 (map@db2f8b8)
 -- engine: postgres
 -- table:  books
 ALTER TABLE books ADD CONSTRAINT fk_books_author FOREIGN KEY (author_id) REFERENCES authors(id) ON DELETE RESTRICT;

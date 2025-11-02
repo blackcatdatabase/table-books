@@ -1,4 +1,4 @@
--- Auto-generated from schema-views-postgres.psd1 (map@c5e4097)
+-- Auto-generated from schema-views-postgres.psd1 (map@db2f8b8)
 -- engine: postgres
 -- table:  books
 -- Contract view for [books]
@@ -23,7 +23,7 @@ SELECT
   is_active,
   is_available,
   stock_quantity,
-  CASE WHEN (is_active AND is_available AND (stock_quantity IS NULL OR stock_quantity > 0)) THEN 1 ELSE 0 END AS is_saleable,
+  (is_active AND is_available AND (stock_quantity IS NULL OR stock_quantity > 0)) AS is_saleable,
   created_at,
   updated_at,
   version,
