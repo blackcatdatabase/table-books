@@ -4,15 +4,17 @@ declare(strict_types=1);
 namespace BlackCat\Database\Packages\Books\Dto;
 
 /**
- * Jednoduché, neměnné DTO s veřejnými readonly vlastnostmi.
- * - Bez logiky; pouze nosič dat.
- * - Silné typy drží kontrakt napříč vrstvami.
+ * Simple immutable DTO with public readonly properties.
+ * - No logic; just a data carrier.
+ * - Strong types enforce the contract across layers.
  */
-final class BookDto {
+final class BookDto implements \JsonSerializable {
     public function __construct(
-        public readonly ?int $id,
+        public readonly int $id,
+        public readonly int $tenantId,
         public readonly string $title,
         public readonly string $slug,
+        public readonly ?string $slugCi,
         public readonly ?string $shortDescription,
         public readonly ?string $fullDescription,
         public readonly string $price,
@@ -31,11 +33,28 @@ final class BookDto {
         public readonly \DateTimeImmutable $createdAt,
         public readonly \DateTimeImmutable $updatedAt,
         public readonly int $version,
-        public readonly ?\DateTimeImmutable $deletedAt
+        public readonly ?\DateTimeImmutable $deletedAt,
+        public readonly ?int $isLive
     ) {}
 
-    /** Vhodné pro serializaci/logování (bez velkých blobů). */
+    /** Suitable for serialization/logging (without large blobs). */
     public function toArray(): array {
         return get_object_vars($this);
     }
+
+    /** toArray() without null values - for clean logging/diffs. */
+    public function toArrayNonNull(): array {
+        return array_filter(get_object_vars($this), static fn($v) => $v !== null);
+    }
+
+    public function jsonSerialize(): array {
+       $a = $this->toArray();
+       foreach ($a as $k => $v) {
+           if ($v instanceof \DateTimeInterface) {
+               // ISO-8601 with a timezone; switch to 'Y-m-d H:i:s.u' if needed
+               $a[$k] = $v->format(\DateTimeInterface::ATOM);
+           }
+       }
+       return $a;
+   }
 }

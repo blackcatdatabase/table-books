@@ -1,10 +1,12 @@
--- Auto-generated from schema-map-mysql.psd1 (map@db2f8b8)
+-- Auto-generated from schema-map-mysql.psd1 (map@62c9c93)
 -- engine: mysql
 -- table:  books
 CREATE TABLE IF NOT EXISTS books (
   id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  tenant_id BIGINT UNSIGNED NOT NULL,
   title VARCHAR(255) NOT NULL,
-  slug VARCHAR(255) NOT NULL UNIQUE,
+  slug VARCHAR(255) NOT NULL,
+  slug_ci VARCHAR(255) GENERATED ALWAYS AS (LOWER(slug)) STORED,
   short_description VARCHAR(512) NULL,
   full_description LONGTEXT NULL,
   price DECIMAL(12,2) NOT NULL DEFAULT 0.00,
@@ -24,6 +26,7 @@ CREATE TABLE IF NOT EXISTS books (
   updated_at DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
   version INT UNSIGNED NOT NULL DEFAULT 0,
   deleted_at DATETIME(6) NULL,
+  is_live TINYINT(1) GENERATED ALWAYS AS (deleted_at IS NULL) STORED,
   INDEX idx_books_author_id (author_id),
   INDEX idx_books_main_category_id (main_category_id),
   INDEX idx_books_sku (sku),
