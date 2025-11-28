@@ -22,7 +22,7 @@ use BlackCat\Core\Database;
 final class Criteria extends BaseCriteria
 {
     /** Hard clamp perPage to [1..maxPerPage] for this repo. */
-    protected function perPage(): int
+    public function perPage(): int
     {
         $pp = (int) parent::perPage();
         $pp = max(1, $pp);
@@ -117,8 +117,8 @@ final class Criteria extends BaseCriteria
     public function updatedSince(\DateTimeInterface $ts): self {
         return $this->where('t.updated_at >= :u', ['u' => $ts]);
     }
-    public function withTrashed(): self    { return $this->softDeleteMode('with'); }
-    public function onlyTrashed(): self    { return $this->softDeleteMode('only'); }
+    public function withTrashed(bool $on = true): self { return parent::withTrashed($on); }
+    public function onlyTrashed(bool $on = true): self { return parent::onlyTrashed($on); }
     public function bySlug(string $slug): self {
         return $this->where('t.slug = :c_slug', ['c_slug' => $slug]);
     }
