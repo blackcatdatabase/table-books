@@ -1,4 +1,4 @@
--- Auto-generated from joins-postgres.yaml (map@85230ed)
+-- Auto-generated from joins-postgres.yaml (map@sha1:29CF395A3A4C8964482083733F8E613ABFBEF5CC)
 -- engine: postgres
 -- view:   books_inventory_status
 
@@ -16,7 +16,7 @@ LEFT JOIN inventory_reservations ir
   ON ir.tenant_id = b.tenant_id AND ir.book_id = b.id
 GROUP BY b.id, b.tenant_id, b.title, b.stock_quantity;
 
--- Auto-generated from joins-postgres.yaml (map@85230ed)
+-- Auto-generated from joins-postgres.yaml (map@sha1:29CF395A3A4C8964482083733F8E613ABFBEF5CC)
 -- engine: postgres
 -- view:   books_with_assets
 
