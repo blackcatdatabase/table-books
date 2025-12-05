@@ -20,9 +20,9 @@ final class BookDtoMapper
     private const COL_TO_PROP = [ 'id' => 'id', 'tenant_id' => 'tenantId', 'title' => 'title', 'slug' => 'slug', 'slug_ci' => 'slugCi', 'short_description' => 'shortDescription', 'full_description' => 'fullDescription', 'price' => 'price', 'currency' => 'currency', 'author_id' => 'authorId', 'main_category_id' => 'mainCategoryId', 'isbn' => 'isbn', 'language' => 'language', 'pages' => 'pages', 'publisher' => 'publisher', 'published_at' => 'publishedAt', 'sku' => 'sku', 'is_active' => 'isActive', 'is_available' => 'isAvailable', 'stock_quantity' => 'stockQuantity', 'created_at' => 'createdAt', 'updated_at' => 'updatedAt', 'version' => 'version', 'deleted_at' => 'deletedAt', 'is_live' => 'isLive' ];
 
     /** @var string[] */
-    private const BOOL_COLS   = [ 'is_active', 'is_available', 'is_live' ];
+    private const BOOL_COLS   = [ 'is_active', 'is_available' ];
     /** @var string[] */
-    private const INT_COLS    = [ 'id', 'tenant_id', 'author_id', 'main_category_id', 'pages', 'stock_quantity', 'version' ];
+    private const INT_COLS    = [ 'id', 'tenant_id', 'author_id', 'main_category_id', 'pages', 'stock_quantity', 'version', 'is_live' ];
     /** @var string[] */
     private const FLOAT_COLS  = [ 'price' ];
     /** @var string[] */

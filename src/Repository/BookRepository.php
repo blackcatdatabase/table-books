@@ -592,16 +592,16 @@ use OrderByTools, PkTools, RepositoryHelpers;
     // === Generated unique helpers (per table UNIQUE/PK) ===
     
     /** @return array<string,mixed>|\BlackCat\Database\Packages\Books\Dto\BookDto|null */
-    public function getByTenantIdAndSlugCi(int $tenantId, string $slugCi, bool $asDto = false): array|\BlackCat\Database\Packages\Books\Dto\BookDto|null {
-        return $this->getByUnique([ 'tenant_id' => $tenantId, 'slug_ci' => $slugCi ], $asDto);
+    public function getByTenantIdAndSlugCiAndIsLive(int $tenantId, string $slugCi, int $isLive, bool $asDto = false): array|\BlackCat\Database\Packages\Books\Dto\BookDto|null {
+        return $this->getByUnique([ 'tenant_id' => $tenantId, 'slug_ci' => $slugCi, 'is_live' => $isLive ], $asDto);
     }
-    public function existsByTenantIdAndSlugCi(int $tenantId, string $slugCi): bool {
-        $where = 't.' . Ident::q($this->db, 'tenant_id') . ' = :uniq_tenant_id' . ' AND ' . 't.' . Ident::q($this->db, 'slug_ci') . ' = :uniq_slug_ci';
-        return $this->exists($where, [ 'uniq_tenant_id' => $tenantId, 'uniq_slug_ci' => $slugCi ]);
+    public function existsByTenantIdAndSlugCiAndIsLive(int $tenantId, string $slugCi, int $isLive): bool {
+        $where = 't.' . Ident::q($this->db, 'tenant_id') . ' = :uniq_tenant_id' . ' AND ' . 't.' . Ident::q($this->db, 'slug_ci') . ' = :uniq_slug_ci' . ' AND ' . 't.' . Ident::q($this->db, 'is_live') . ' = :uniq_is_live';
+        return $this->exists($where, [ 'uniq_tenant_id' => $tenantId, 'uniq_slug_ci' => $slugCi, 'uniq_is_live' => $isLive ]);
     }
     /** @return int|string|null */
-    public function getIdByTenantIdAndSlugCi(int $tenantId, string $slugCi) {
-        $row = $this->getByTenantIdAndSlugCi($tenantId, $slugCi, false);
+    public function getIdByTenantIdAndSlugCiAndIsLive(int $tenantId, string $slugCi, int $isLive) {
+        $row = $this->getByTenantIdAndSlugCiAndIsLive($tenantId, $slugCi, $isLive, false);
         if (!is_array($row)) { return null; }
         return $row['id'] ?? null;
     }
