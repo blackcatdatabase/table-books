@@ -17,7 +17,7 @@ use BlackCat\Database\Support\DtoHydrator;
 final class BookDtoMapper
 {
     /** @var array<string,string> Column -> DTO property */
-    private const COL_TO_PROP = [ 'tenant_id' => 'tenantId', 'slug_ci' => 'slugCi', 'short_description' => 'shortDescription', 'full_description' => 'fullDescription', 'author_id' => 'authorId', 'main_category_id' => 'mainCategoryId', 'published_at' => 'publishedAt', 'is_active' => 'isActive', 'is_available' => 'isAvailable', 'stock_quantity' => 'stockQuantity', 'created_at' => 'createdAt', 'updated_at' => 'updatedAt', 'deleted_at' => 'deletedAt', 'is_live' => 'isLive' ];
+    private const COL_TO_PROP = [ 'id' => 'id', 'tenant_id' => 'tenantId', 'title' => 'title', 'slug' => 'slug', 'slug_ci' => 'slugCi', 'short_description' => 'shortDescription', 'full_description' => 'fullDescription', 'price' => 'price', 'currency' => 'currency', 'author_id' => 'authorId', 'main_category_id' => 'mainCategoryId', 'isbn' => 'isbn', 'language' => 'language', 'pages' => 'pages', 'publisher' => 'publisher', 'published_at' => 'publishedAt', 'sku' => 'sku', 'is_active' => 'isActive', 'is_available' => 'isAvailable', 'stock_quantity' => 'stockQuantity', 'created_at' => 'createdAt', 'updated_at' => 'updatedAt', 'version' => 'version', 'deleted_at' => 'deletedAt', 'is_live' => 'isLive' ];
 
     /** @var string[] */
     private const BOOL_COLS   = [ 'is_active', 'is_available' ];
@@ -39,13 +39,8 @@ final class BookDtoMapper
 
     private static function tz(): DateTimeZone
     {
-        if (self::$tzObj instanceof DateTimeZone) {
-            return self::$tzObj;
-        }
-        try {
+        if (!(self::$tzObj instanceof DateTimeZone)) {
             self::$tzObj = new DateTimeZone(self::TZ);
-        } catch (\Throwable) {
-            self::$tzObj = new DateTimeZone('UTC');
         }
         return self::$tzObj;
     }

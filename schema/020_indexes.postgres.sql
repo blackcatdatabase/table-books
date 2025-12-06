@@ -1,15 +1,16 @@
--- Auto-generated from schema-map-postgres.psd1 (map@62c9c93)
+-- Auto-generated from schema-map-postgres.yaml (map@sha1:F0EE237771FBA8DD7C4E886FF276F91A862C3718)
 -- engine: postgres
 -- table:  books
+
 CREATE INDEX IF NOT EXISTS idx_books_author_id ON books (author_id);
 
 CREATE INDEX IF NOT EXISTS idx_books_main_category_id ON books (main_category_id);
 
 CREATE INDEX IF NOT EXISTS idx_books_sku ON books (sku);
 
-CREATE UNIQUE INDEX IF NOT EXISTS ux_books_tenant_slug_live_ci ON books (tenant_id, slug_ci) WHERE deleted_at IS NULL;
+CREATE UNIQUE INDEX IF NOT EXISTS ux_books_tenant_slug_live_ci ON books (tenant_id, slug_ci, is_live);
 
-CREATE UNIQUE INDEX IF NOT EXISTS ux_books_tenant_isbn ON books (tenant_id, isbn) WHERE isbn IS NOT NULL;
+CREATE UNIQUE INDEX IF NOT EXISTS ux_books_tenant_isbn ON books (tenant_id, isbn);
 
 CREATE UNIQUE INDEX IF NOT EXISTS ux_books_tenant_id ON books (tenant_id, id);
 

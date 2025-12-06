@@ -22,7 +22,7 @@ use BlackCat\Core\Database;
 final class Criteria extends BaseCriteria
 {
     /** Hard clamp perPage to [1..maxPerPage] for this repo. */
-    protected function perPage(): int
+    public function perPage(): int
     {
         $pp = (int) parent::perPage();
         $pp = max(1, $pp);
@@ -41,12 +41,11 @@ final class Criteria extends BaseCriteria
         return [ 'title', 'slug', 'slug_ci', 'short_description', 'full_description', 'currency', 'isbn', 'language', 'publisher', 'sku' ];
     }
 
-    /** Columns allowed in ORDER BY (falls back to filterable() when empty). */
-    protected function sortable(): array
-    {
-        $x = [ 'id', 'tenant_id', 'title', 'slug', 'slug_ci', 'short_description', 'full_description', 'price', 'currency', 'author_id', 'main_category_id', 'isbn', 'language', 'pages', 'publisher', 'published_at', 'sku', 'is_active', 'is_available', 'stock_quantity', 'created_at', 'updated_at', 'version', 'deleted_at', 'is_live' ];
-        return $x ?: $this->filterable();
-    }
+/** Columns allowed in ORDER BY (falls back to filterable() when empty). */
+protected function sortable(): array
+{
+    return [ 'id', 'tenant_id', 'title', 'slug', 'slug_ci', 'short_description', 'full_description', 'price', 'currency', 'author_id', 'main_category_id', 'isbn', 'language', 'pages', 'publisher', 'published_at', 'sku', 'is_active', 'is_available', 'stock_quantity', 'created_at', 'updated_at', 'version', 'deleted_at', 'is_live' ];
+}
 
     /**
      * Whitelist of joinable entities (for safe ->join() usage):
@@ -87,8 +86,8 @@ final class Criteria extends BaseCriteria
         $c = new static(); // previously: new self()
 
         $c->setDialectFromDatabase($db);
-        if ($quoteIdentifiers) { $c->quoteIdentifiers(true); }
-        if ($tenantId !== null) { $c->tenant($tenantId, $tenantColumn); }
+        if ($quoteIdentifiers) { $c->enableIdentifierQuoting(true); }
+        if ($tenantId !== null && $tenantColumn !== '') { $c->tenant($tenantId, $tenantColumn); }
 
         if (\method_exists(\BlackCat\Database\Packages\Books\Definitions::class, 'softDeleteColumn')) {
             $soft = \BlackCat\Database\Packages\Books\Definitions::softDeleteColumn();
@@ -99,28 +98,28 @@ final class Criteria extends BaseCriteria
 
     // --- Generated criteria helpers (per table) ---
     
-    public function byId(int|string $id): self {
-        return $this->where('t.id = :cid', ['cid' => $id]);
+    public function byId(int|string $id): static {
+        return $this->where('id', '=', $id);
     }
-    public function byIds(array $ids): self {
-        if (!$ids) return $this->where('1=0');
-        return $this->whereIn('t.id', array_values($ids));
+    public function byIds(array $ids): static {
+        if (!$ids) return $this->whereRaw('1=0');
+        return $this->where('id', 'IN', array_values($ids));
     }
     /** @param int|string|array<int,int|string> $tenantId */
-    public function forTenant(int|string|array $tenantId): self {
-        if (is_array($tenantId)) { return $this->whereIn('t.tenant_id', $tenantId); }
-        return $this->where('t.tenant_id = :tid', ['tid' => $tenantId]);
+    public function forTenant(int|string|array $tenantId): static {
+        if (is_array($tenantId)) { return $this->where('tenant_id', 'IN', $tenantId); }
+        return $this->where('tenant_id', '=', $tenantId);
     }
-    public function createdBetween(?\DateTimeInterface $from, ?\DateTimeInterface $to): self {
-        return $this->range('t.created_at', $from, $to);
+    public function createdBetween(?\DateTimeInterface $from, ?\DateTimeInterface $to): static {
+        return $this->between('created_at', $from, $to);
     }
-    public function updatedSince(\DateTimeInterface $ts): self {
-        return $this->where('t.updated_at >= :u', ['u' => $ts]);
+    public function updatedSince(\DateTimeInterface $ts): static {
+        return $this->where('updated_at', '>=', $ts);
     }
-    public function withTrashed(): self    { return $this->softDeleteMode('with'); }
-    public function onlyTrashed(): self    { return $this->softDeleteMode('only'); }
-    public function bySlug(string $slug): self {
-        return $this->where('t.slug = :c_slug', ['c_slug' => $slug]);
+    public function withTrashed(bool $on = true): static { return parent::withTrashed($on); }
+    public function onlyTrashed(bool $on = true): static { return parent::onlyTrashed($on); }
+    public function bySlug(string $slug): static {
+        return $this->whereRaw('slug = :c_slug', ['c_slug' => $slug]);
     }
 
 }
