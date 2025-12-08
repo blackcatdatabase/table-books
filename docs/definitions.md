@@ -6,26 +6,26 @@ Books catalog with pricing and stock flags.
 | Column | Type | Null | Default | Description |
 | --- | --- | --- | --- | --- |
 | author_id | BIGINT | NO |  | Author (FK authors.id). |
-| created_at | TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | Creation timestamp (UTC). |
+| created_at | DATETIME(6) | NO | CURRENT_TIMESTAMP(6) | Creation timestamp (UTC). |
 | currency | CHAR(3) | NO | EUR | ISO 4217 currency code (3 letters). |
-| deleted_at | TIMESTAMPTZ(6) | YES |  | Soft delete timestamp. |
-| full_description | TEXT | YES |  | Long description (rich text allowed). |
+| deleted_at | DATETIME(6) | YES |  | Soft delete timestamp. |
+| full_description | LONGTEXT | YES |  | Long description (rich text allowed). |
 | id | BIGINT | NO |  | Surrogate primary key. |
-| is_active | BOOLEAN | NO | TRUE | Visible in catalog. |
-| is_available | BOOLEAN | NO | TRUE | Available for purchase/download. |
+| is_active | BOOLEAN | NO | 1 | Visible in catalog. |
+| is_available | BOOLEAN | NO | 1 | Available for purchase/download. |
 | isbn | VARCHAR(32) | YES |  | ISBN identifier. |
 | language | CHAR(5) | YES |  | Language code (e.g., en, cs). |
 | main_category_id | BIGINT | NO |  | Primary category (FK categories.id). |
-| pages | INTEGER | YES |  | Number of pages (if applicable). |
-| price | NUMERIC(12,2) | NO | 0.00 | Current unit price. |
+| pages | INT | YES |  | Number of pages (if applicable). |
+| price | DECIMAL(12,2) | NO | 0.00 | Current unit price. |
 | published_at | DATE | YES |  | Publication date. |
 | publisher | VARCHAR(255) | YES |  | Publisher name. |
 | short_description | VARCHAR(512) | YES |  | Short blurb. |
 | sku | VARCHAR(64) | YES |  | Stock keeping unit. |
 | slug | VARCHAR(255) | NO |  | URL-friendly unique slug. |
-| stock_quantity | INTEGER | NO | 0 | Units in stock. |
+| stock_quantity | INT | NO | 0 | Units in stock. |
 | title | VARCHAR(255) | NO |  | Book title. |
-| updated_at | TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | Update timestamp (UTC). |
+| updated_at | DATETIME(6) | NO | CURRENT_TIMESTAMP(6) | Update timestamp (UTC). |
 
 ## Engine Details
 
@@ -90,9 +90,9 @@ Foreign keys:
 ## Views
 | View | Engine | Flags | File |
 | --- | --- | --- | --- |
-| vw_books | mysql | algorithm=MERGE, security=INVOKER | [packages\books\schema\040_views.mysql.sql](https://github.com/blackcatacademy/blackcat-database/packages/books/schema/040_views.mysql.sql) |
-| vw_books_inventory_status | mysql | algorithm=TEMPTABLE, security=INVOKER | [packages\books\schema\040_views_joins.mysql.sql](https://github.com/blackcatacademy/blackcat-database/packages/books/schema/040_views_joins.mysql.sql) |
-| vw_books_with_assets | mysql | algorithm=TEMPTABLE, security=INVOKER | [packages\books\schema\040_views_joins.mysql.sql](https://github.com/blackcatacademy/blackcat-database/packages/books/schema/040_views_joins.mysql.sql) |
-| vw_books | postgres |  | [packages\books\schema\040_views.postgres.sql](https://github.com/blackcatacademy/blackcat-database/packages/books/schema/040_views.postgres.sql) |
-| vw_books_inventory_status | postgres |  | [packages\books\schema\040_views_joins.postgres.sql](https://github.com/blackcatacademy/blackcat-database/packages/books/schema/040_views_joins.postgres.sql) |
-| vw_books_with_assets | postgres |  | [packages\books\schema\040_views_joins.postgres.sql](https://github.com/blackcatacademy/blackcat-database/packages/books/schema/040_views_joins.postgres.sql) |
+| vw_books | mysql | algorithm=MERGE, security=INVOKER | [schema\040_views.mysql.sql](schema\040_views.mysql.sql) |
+| vw_books_inventory_status | mysql | algorithm=TEMPTABLE, security=INVOKER | [schema\040_views_joins.mysql.sql](schema\040_views_joins.mysql.sql) |
+| vw_books_with_assets | mysql | algorithm=TEMPTABLE, security=INVOKER | [schema\040_views_joins.mysql.sql](schema\040_views_joins.mysql.sql) |
+| vw_books | postgres |  | [schema\040_views.postgres.sql](schema\040_views.postgres.sql) |
+| vw_books_inventory_status | postgres |  | [schema\040_views_joins.postgres.sql](schema\040_views_joins.postgres.sql) |
+| vw_books_with_assets | postgres |  | [schema\040_views_joins.postgres.sql](schema\040_views_joins.postgres.sql) |
