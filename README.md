@@ -116,11 +116,13 @@ graph LR
 _No engine differences detected._
 
 ## Constraints Snapshot
-- `created_at` – default=CURRENT_TIMESTAMP(6)
+- `price` – default=0.00
 - `currency` – default=EUR
 - `is_active` – default=mysql: 1 / postgres: TRUE
 - `is_available` – default=mysql: 1 / postgres: TRUE
-- `price` – default=0.00
+- `stock_quantity` – default=0
+- `created_at` – default=CURRENT_TIMESTAMP(6)
+- `updated_at` – default=CURRENT_TIMESTAMP(6)
 
 ## Schema Files
 | File | Engine |
