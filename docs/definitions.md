@@ -11,8 +11,8 @@ Books catalog with pricing and stock flags.
 | deleted_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | YES |  | Soft delete timestamp. |
 | full_description | mysql: LONGTEXT / postgres: TEXT | YES |  | Long description (rich text allowed). |
 | id | BIGINT | NO |  | Surrogate primary key. |
-| is_active | BOOLEAN | NO | TRUE | Visible in catalog. |
-| is_available | BOOLEAN | NO | TRUE | Available for purchase/download. |
+| is_active | BOOLEAN | NO | mysql: 1 / postgres: TRUE | Visible in catalog. |
+| is_available | BOOLEAN | NO | mysql: 1 / postgres: TRUE | Available for purchase/download. |
 | isbn | VARCHAR(32) | YES |  | ISBN identifier. |
 | language | CHAR(5) | YES |  | Language code (e.g., en, cs). |
 | main_category_id | BIGINT | NO |  | Primary category (FK categories.id). |
@@ -90,9 +90,9 @@ Foreign keys:
 ## Views
 | View | Engine | Flags | File |
 | --- | --- | --- | --- |
-| vw_books | mysql | algorithm=MERGE, security=INVOKER | [schema\040_views.mysql.sql](schema\040_views.mysql.sql) |
-| vw_books_inventory_status | mysql | algorithm=TEMPTABLE, security=INVOKER | [schema\040_views_joins.mysql.sql](schema\040_views_joins.mysql.sql) |
-| vw_books_with_assets | mysql | algorithm=TEMPTABLE, security=INVOKER | [schema\040_views_joins.mysql.sql](schema\040_views_joins.mysql.sql) |
-| vw_books | postgres |  | [schema\040_views.postgres.sql](schema\040_views.postgres.sql) |
-| vw_books_inventory_status | postgres |  | [schema\040_views_joins.postgres.sql](schema\040_views_joins.postgres.sql) |
-| vw_books_with_assets | postgres |  | [schema\040_views_joins.postgres.sql](schema\040_views_joins.postgres.sql) |
+| vw_books | mysql | algorithm=MERGE, security=INVOKER | [../schema/040_views.mysql.sql](../schema/040_views.mysql.sql) |
+| vw_books_inventory_status | mysql | algorithm=TEMPTABLE, security=INVOKER | [../schema/040_views_joins.mysql.sql](../schema/040_views_joins.mysql.sql) |
+| vw_books_with_assets | mysql | algorithm=TEMPTABLE, security=INVOKER | [../schema/040_views_joins.mysql.sql](../schema/040_views_joins.mysql.sql) |
+| vw_books | postgres |  | [../schema/040_views.postgres.sql](../schema/040_views.postgres.sql) |
+| vw_books_inventory_status | postgres |  | [../schema/040_views_joins.postgres.sql](../schema/040_views_joins.postgres.sql) |
+| vw_books_with_assets | postgres |  | [../schema/040_views_joins.postgres.sql](../schema/040_views_joins.postgres.sql) |
