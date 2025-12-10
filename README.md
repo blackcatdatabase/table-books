@@ -118,8 +118,8 @@ _No engine differences detected._
 ## Constraints Snapshot
 - `created_at` – default=CURRENT_TIMESTAMP(6)
 - `currency` – default=EUR
-- `is_active` – default=TRUE
-- `is_available` – default=TRUE
+- `is_active` – default=mysql: 1 / postgres: TRUE
+- `is_available` – default=mysql: 1 / postgres: TRUE
 - `price` – default=0.00
 
 ## Schema Files
