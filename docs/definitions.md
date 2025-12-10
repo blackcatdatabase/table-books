@@ -11,9 +11,9 @@ Books catalog with pricing and stock flags.
 | deleted_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | YES |  | Soft delete timestamp. |
 | full_description | mysql: LONGTEXT / postgres: TEXT | YES |  | Long description (rich text allowed). |
 | id | BIGINT | NO |  | Surrogate primary key. |
+| isbn | VARCHAR(32) | YES |  | ISBN identifier. |
 | is_active | BOOLEAN | NO | mysql: 1 / postgres: TRUE | Visible in catalog. |
 | is_available | BOOLEAN | NO | mysql: 1 / postgres: TRUE | Available for purchase/download. |
-| isbn | VARCHAR(32) | YES |  | ISBN identifier. |
 | language | CHAR(5) | YES |  | Language code (e.g., en, cs). |
 | main_category_id | BIGINT | NO |  | Primary category (FK categories.id). |
 | pages | mysql: INT / postgres: INTEGER | YES |  | Number of pages (if applicable). |
