@@ -1,4 +1,4 @@
--- Auto-generated from joins-mysql.yaml (map@sha1:DA70105A5B799F72A56FEAB71A5171F946A770D2)
+-- Auto-generated from core\joins-mysql.yaml (map@sha1:DA70105A5B799F72A56FEAB71A5171F946A770D2)
 -- engine: mysql
 -- view:   books_inventory_status
 
@@ -15,7 +15,7 @@ LEFT JOIN inventory_reservations ir
   ON ir.tenant_id = b.tenant_id AND ir.book_id = b.id
 GROUP BY b.id, b.tenant_id, b.title, b.stock_quantity;
 
--- Auto-generated from joins-mysql.yaml (map@sha1:DA70105A5B799F72A56FEAB71A5171F946A770D2)
+-- Auto-generated from core\joins-mysql.yaml (map@sha1:DA70105A5B799F72A56FEAB71A5171F946A770D2)
 -- engine: mysql
 -- view:   books_with_assets
 
