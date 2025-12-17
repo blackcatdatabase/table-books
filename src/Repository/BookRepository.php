@@ -252,6 +252,7 @@ use OrderByTools, PkTools, RepositoryHelpers;
           ));
           if (!$rows) { return 0; }
 
+          /** @var list<string> $updCols */
           $updCols = [ 'title', 'short_description', 'full_description', 'price', 'currency', 'author_id', 'main_category_id', 'isbn', 'language', 'pages', 'publisher', 'published_at', 'sku', 'is_active', 'is_available', 'stock_quantity', 'deleted_at' ];
           if ($updCols && $soft && !in_array($soft, $updCols, true)) { $updCols[] = $soft; }
 
