@@ -3,29 +3,33 @@
 Books catalog with pricing and stock flags.
 
 ## Columns
-| Column | Type | Null | Default | Description |
-| --- | --- | --- | --- | --- |
-| id | BIGINT | NO |  | Surrogate primary key. |
-| title | VARCHAR(255) | NO |  | Book title. |
-| slug | VARCHAR(255) | NO |  | URL-friendly unique slug. |
-| short_description | VARCHAR(512) | YES |  | Short blurb. |
-| full_description | mysql: LONGTEXT / postgres: TEXT | YES |  | Long description (rich text allowed). |
-| price | mysql: DECIMAL(12,2) / postgres: NUMERIC(12,2) | NO | 0.00 | Current unit price. |
-| currency | CHAR(3) | NO | EUR | ISO 4217 currency code (3 letters). |
-| author_id | BIGINT | NO |  | Author (FK authors.id). |
-| main_category_id | BIGINT | NO |  | Primary category (FK categories.id). |
-| isbn | VARCHAR(32) | YES |  | ISBN identifier. |
-| language | CHAR(5) | YES |  | Language code (e.g., en, cs). |
-| pages | mysql: INT / postgres: INTEGER | YES |  | Number of pages (if applicable). |
-| publisher | VARCHAR(255) | YES |  | Publisher name. |
-| published_at | DATE | YES |  | Publication date. |
-| sku | VARCHAR(64) | YES |  | Stock keeping unit. |
-| is_active | BOOLEAN | NO | mysql: 1 / postgres: TRUE | Visible in catalog. |
-| is_available | BOOLEAN | NO | mysql: 1 / postgres: TRUE | Available for purchase/download. |
-| stock_quantity | mysql: INT / postgres: INTEGER | NO | 0 | Units in stock. |
-| created_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | Creation timestamp (UTC). |
-| updated_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | Update timestamp (UTC). |
-| deleted_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | YES |  | Soft delete timestamp. |
+| Column | Type | Null | Default | Description | Crypto |
+| --- | --- | --- | --- | --- | --- |
+| id | BIGINT | NO |  | Surrogate primary key. |  |
+| tenant_id | BIGINT | NO |  | Owning tenant (FK tenants.id). |  |
+| title | VARCHAR(255) | NO |  | Book title. |  |
+| slug | VARCHAR(255) | NO |  | URL-friendly unique slug. |  |
+| slug_ci | mysql: VARCHAR(255) / postgres: TEXT | YES |  | Generated lowercase slug used for case-insensitive uniqueness. |  |
+| short_description | VARCHAR(512) | YES |  | Short blurb. |  |
+| full_description | mysql: LONGTEXT / postgres: TEXT | YES |  | Long description (rich text allowed). |  |
+| price | mysql: DECIMAL(12,2) / postgres: NUMERIC(12,2) | NO | 0.00 | Current unit price. |  |
+| currency | CHAR(3) | NO | EUR | ISO 4217 currency code (3 letters). |  |
+| author_id | BIGINT | NO |  | Author (FK authors.id). |  |
+| main_category_id | BIGINT | NO |  | Primary category (FK categories.id). |  |
+| isbn | VARCHAR(32) | YES |  | ISBN identifier. |  |
+| language | CHAR(5) | YES |  | Language code (e.g., en, cs). |  |
+| pages | mysql: INT / postgres: INTEGER | YES |  | Number of pages (if applicable). |  |
+| publisher | VARCHAR(255) | YES |  | Publisher name. |  |
+| published_at | DATE | YES |  | Publication date. |  |
+| sku | VARCHAR(64) | YES |  | Stock keeping unit. |  |
+| is_active | BOOLEAN | NO | mysql: 1 / postgres: TRUE | Visible in catalog. |  |
+| is_available | BOOLEAN | NO | mysql: 1 / postgres: TRUE | Available for purchase/download. |  |
+| stock_quantity | mysql: INT / postgres: INTEGER | NO | 0 | Units in stock. |  |
+| created_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | Creation timestamp (UTC). |  |
+| updated_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | Update timestamp (UTC). |  |
+| version | mysql: INT / postgres: INTEGER | NO | 0 | Optimistic locking version counter. |  |
+| deleted_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | YES |  | Soft delete timestamp. |  |
+| is_live | mysql: TINYINT(1) / postgres: BOOLEAN | YES |  | Generated flag (deleted_at IS NULL). |  |
 
 ## Engine Details
 
