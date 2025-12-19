@@ -17,6 +17,23 @@ GROUP BY b.id, b.tenant_id, b.title, b.stock_quantity;
 
 -- Auto-generated from core/joins-mysql.yaml (map@sha1:DA70105A5B799F72A56FEAB71A5171F946A770D2)
 -- engine: mysql
+-- view:   books_inventory_status
+
+CREATE OR REPLACE ALGORITHM=TEMPTABLE SQL SECURITY INVOKER VIEW vw_books_inventory_status AS
+SELECT
+  b.id,
+  b.tenant_id,
+  b.title,
+  b.stock_quantity,
+  COALESCE(SUM(ir.quantity), 0) AS reserved_quantity,
+  b.stock_quantity - COALESCE(SUM(ir.quantity), 0) AS available_quantity
+FROM books b
+LEFT JOIN inventory_reservations ir
+  ON ir.tenant_id = b.tenant_id AND ir.book_id = b.id
+GROUP BY b.id, b.tenant_id, b.title, b.stock_quantity;
+
+-- Auto-generated from joins-mysql.yaml (map@sha1:DA70105A5B799F72A56FEAB71A5171F946A770D2)
+-- engine: mysql
 -- view:   books_with_assets
 
 CREATE OR REPLACE ALGORITHM=TEMPTABLE SQL SECURITY INVOKER VIEW vw_books_with_assets AS
