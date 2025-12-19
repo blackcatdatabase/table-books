@@ -41,11 +41,11 @@ final class Criteria extends BaseCriteria
         return [ 'title', 'slug', 'slug_ci', 'short_description', 'full_description', 'currency', 'isbn', 'language', 'publisher', 'sku' ];
     }
 
-/** Columns allowed in ORDER BY (falls back to filterable() when empty). */
-protected function sortable(): array
-{
-    return [ 'id', 'tenant_id', 'title', 'slug', 'slug_ci', 'short_description', 'full_description', 'price', 'currency', 'author_id', 'main_category_id', 'isbn', 'language', 'pages', 'publisher', 'published_at', 'sku', 'is_active', 'is_available', 'stock_quantity', 'created_at', 'updated_at', 'version', 'deleted_at', 'is_live' ];
-}
+    /** Columns allowed in ORDER BY (falls back to filterable() when empty). */
+    protected function sortable(): array
+    {
+        return [ 'id', 'tenant_id', 'title', 'slug', 'slug_ci', 'short_description', 'full_description', 'price', 'currency', 'author_id', 'main_category_id', 'isbn', 'language', 'pages', 'publisher', 'published_at', 'sku', 'is_active', 'is_available', 'stock_quantity', 'created_at', 'updated_at', 'version', 'deleted_at', 'is_live' ];
+    }
 
     /**
      * Whitelist of joinable entities (for safe ->join() usage):

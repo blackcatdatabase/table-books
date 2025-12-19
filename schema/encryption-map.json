@@ -1,0 +1,83 @@
+{
+  "tables": {
+    "books": {
+      "columns": {
+        "author_id": {
+          "strategy": "passthrough"
+        },
+        "created_at": {
+          "strategy": "passthrough"
+        },
+        "currency": {
+          "strategy": "passthrough"
+        },
+        "deleted_at": {
+          "strategy": "passthrough"
+        },
+        "full_description": {
+          "strategy": "passthrough"
+        },
+        "id": {
+          "strategy": "passthrough"
+        },
+        "is_active": {
+          "strategy": "passthrough"
+        },
+        "is_available": {
+          "strategy": "passthrough"
+        },
+        "is_live": {
+          "strategy": "passthrough"
+        },
+        "isbn": {
+          "strategy": "passthrough"
+        },
+        "language": {
+          "strategy": "passthrough"
+        },
+        "main_category_id": {
+          "strategy": "passthrough"
+        },
+        "pages": {
+          "strategy": "passthrough"
+        },
+        "price": {
+          "strategy": "passthrough"
+        },
+        "published_at": {
+          "strategy": "passthrough"
+        },
+        "publisher": {
+          "strategy": "passthrough"
+        },
+        "short_description": {
+          "strategy": "passthrough"
+        },
+        "sku": {
+          "strategy": "passthrough"
+        },
+        "slug": {
+          "strategy": "passthrough"
+        },
+        "slug_ci": {
+          "strategy": "passthrough"
+        },
+        "stock_quantity": {
+          "strategy": "passthrough"
+        },
+        "tenant_id": {
+          "strategy": "passthrough"
+        },
+        "title": {
+          "strategy": "passthrough"
+        },
+        "updated_at": {
+          "strategy": "passthrough"
+        },
+        "version": {
+          "strategy": "passthrough"
+        }
+      }
+    }
+  }
+}
